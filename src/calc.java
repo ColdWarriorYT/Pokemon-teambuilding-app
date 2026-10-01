@@ -1,10 +1,6 @@
 import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
-
-import java.util.*;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class calc {
@@ -44,7 +40,32 @@ public class calc {
         }
     }
 
-    private static void colorButton(JToggleButton button, int typeIndex) {
+    private static class RoundedButton extends JButton {
+        RoundedButton(String text) {
+            super(text);
+            setPreferredSize(new Dimension(120, 30));
+            setContentAreaFilled(false);
+            setOpaque(false);
+            setBorderPainted(false);
+            setFocusPainted(false);
+        }
+
+        @Override
+        protected void paintComponent(Graphics graphics) {
+            Graphics2D roundedGraphics = (Graphics2D) graphics.create();
+            roundedGraphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            int arc = Math.min(getWidth(), getHeight()) - 2;
+            roundedGraphics.setColor(getBackground());
+            roundedGraphics.fillRoundRect(1, 1, getWidth() - 2, getHeight() - 2, arc, arc);
+            roundedGraphics.setColor(new Color(0, 0, 0, 70));
+            roundedGraphics.setStroke(new BasicStroke(1f));
+            roundedGraphics.drawRoundRect(1, 1, getWidth() - 3, getHeight() - 3, arc, arc);
+            roundedGraphics.dispose();
+            super.paintComponent(graphics);
+        }
+    }
+
+    private static void colorButton(AbstractButton button, int typeIndex) {
         switch (typeIndex) {
             case 0:
                 button.setBackground(Color.GRAY);
@@ -207,10 +228,6 @@ public class calc {
         }
     }
 
-    private static void calculateCoverage(String type) {
-        // placeholder for coverage calculation logic
-    }
-
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new calc());
     }
@@ -218,6 +235,7 @@ public class calc {
     public calc() {
         JFrame frame = new JFrame("Coverage Calculator");
         JPanel inputPanel = new JPanel();
+        JPanel outputPanel = new JPanel();
 
         frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -247,16 +265,30 @@ public class calc {
                 } else {
                     selectedTypes.remove(type);
                 }
+                checkTypes(selectedTypes.keySet().toArray(new String[0]));
             });
             inputPanel.add(button);
         }
 
-        for (int i = 0; i < selectedTypes.size(); i++) {
-            if (selectedTypes.get(TYPES[i]).equals(true)) {
-                calculateCoverage(TYPES[i]);
-            }
+        frame.setVisible(true);
+
+        outputPanel.setLayout(new GridLayout(3, 6, 8, 8));
+        outputPanel.setBackground(INPUT_PANEL_COLOR);
+        outputPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        frame.add(outputPanel, BorderLayout.CENTER);
+
+        for (int i = 0; i < TYPES.length; i++) {
+            String buttonValue = TYPES[i] + " " +outputTypes.get(TYPES[i]);
+            JButton button = new RoundedButton(buttonValue);
+            colorButton(button, i);
+            Color buttonColor = button.getBackground();
+            int brightness = (buttonColor.getRed() * 299 + buttonColor.getGreen() * 587 + buttonColor.getBlue() * 114) / 1000;
+            button.setForeground(brightness < 145 ? Color.WHITE : new Color(25, 25, 25));
+            button.setFont(new Font("Arial", Font.BOLD, 11));
+            button.setMargin(new Insets(5, 0, 5, 0));
+            button.setBorder(new LineBorder(Color.BLACK, 1));
+            outputPanel.add(button);
         }
 
-        frame.setVisible(true);
     }
 }
