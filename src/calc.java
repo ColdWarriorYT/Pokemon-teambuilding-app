@@ -131,120 +131,126 @@ public class calc {
                 continue;
             }
 
-            switch (selectedType) {
-                    case "Normal":
-                        if (selectedTypes.size() == 1) {
-                            outputTypes.put("Ghost", outputTypes.getOrDefault("Ghost", 0));
-                        }
-                        break;
-                    case "Fire":
-                        outputTypes.put("Grass", outputTypes.getOrDefault("Grass", 0) + 1);
-                        outputTypes.put("Ice", outputTypes.getOrDefault("Ice", 0) + 1);
-                        outputTypes.put("Bug", outputTypes.getOrDefault("Bug", 0) + 1);
-                        outputTypes.put("Steel", outputTypes.getOrDefault("Steel", 0) + 1);
-                        break;
-                    case "Water":
-                        outputTypes.put("Fire", outputTypes.getOrDefault("Fire", 0) + 1);
-                        outputTypes.put("Ground", outputTypes.getOrDefault("Ground", 0) + 1);
-                        outputTypes.put("Rock", outputTypes.getOrDefault("Rock", 0) + 1);
-                        break;
-                    case "Grass":
-                        outputTypes.put("Water", outputTypes.getOrDefault("Water", 0) + 1);
-                        outputTypes.put("Ground", outputTypes.getOrDefault("Ground", 0) + 1);
-                        outputTypes.put("Rock", outputTypes.getOrDefault("Rock", 0) + 1);
-                        break;
-                    case "Electric":
-                        if (selectedTypes.size() == 1) {
-                            outputTypes.put("Ground", outputTypes.getOrDefault("Ground", 0));
-                        }
-                        outputTypes.put("Water", outputTypes.getOrDefault("Water", 0) + 1);
-                        outputTypes.put("Flying", outputTypes.getOrDefault("Flying", 0) + 1);
-                        break;
-                    case "Ice":
-                        outputTypes.put("Grass", outputTypes.getOrDefault("Grass", 0) + 1);
-                        outputTypes.put("Ground", outputTypes.getOrDefault("Ground", 0) + 1);
-                        outputTypes.put("Flying", outputTypes.getOrDefault("Flying", 0) + 1);
-                        outputTypes.put("Dragon", outputTypes.getOrDefault("Dragon", 0) + 1);
-                        break;
-                    case "Fighting":
-                        if (selectedTypes.size() == 1) {
-                            outputTypes.put("Ghost", outputTypes.getOrDefault("Ghost", 0));
-                        }
-                        outputTypes.put("Normal", outputTypes.getOrDefault("Normal", 0) + 1);
-                        outputTypes.put("Ice", outputTypes.getOrDefault("Ice", 0) + 1);
-                        outputTypes.put("Rock", outputTypes.getOrDefault("Rock", 0) + 1);
-                        outputTypes.put("Dark", outputTypes.getOrDefault("Dark", 0) + 1);
-                        outputTypes.put("Steel", outputTypes.getOrDefault("Steel", 0) + 1);
-                        break;
-                    case "Poison":
-                        if (selectedTypes.size() == 1) {
-                            outputTypes.put("Steel", outputTypes.getOrDefault("Steel", 0));
-                        }
-                        outputTypes.put("Grass", outputTypes.getOrDefault("Grass", 0) + 1);
-                        outputTypes.put("Fairy", outputTypes.getOrDefault("Fairy", 0) + 1);
-                        break;
-                    case "Ground":
-                        if (selectedTypes.size() == 1) {
-                            outputTypes.put("Flying", outputTypes.getOrDefault("Flying", 0));
-                        }
-                        outputTypes.put("Fire", outputTypes.getOrDefault("Fire", 0) + 1);
-                        outputTypes.put("Electric", outputTypes.getOrDefault("Electric", 0) + 1);
-                        outputTypes.put("Poison", outputTypes.getOrDefault("Poison", 0) + 1);
-                        outputTypes.put("Rock", outputTypes.getOrDefault("Rock", 0) + 1);
-                        outputTypes.put("Steel", outputTypes.getOrDefault("Steel", 0) + 1);
-                        break;
-                    case "Flying":
-                        outputTypes.put("Grass", outputTypes.getOrDefault("Grass", 0) + 1);
-                        outputTypes.put("Fighting", outputTypes.getOrDefault("Fighting", 0) + 1);
-                        outputTypes.put("Bug", outputTypes.getOrDefault("Bug", 0) + 1);
-                        break;
-                    case "Psychic":
-                        if (selectedTypes.size() == 1) {
-                            outputTypes.put("Dark", outputTypes.getOrDefault("Dark", 0));
-                        }
-                        outputTypes.put("Fighting", outputTypes.getOrDefault("Fighting", 0) + 1);
-                        outputTypes.put("Poison", outputTypes.getOrDefault("Poison", 0) + 1);
-                        break;
-                    case "Bug":
-                        outputTypes.put("Grass", outputTypes.getOrDefault("Grass", 0) + 1);
-                        outputTypes.put("Psychic", outputTypes.getOrDefault("Psychic", 0) + 1);
-                        outputTypes.put("Dark", outputTypes.getOrDefault("Dark", 0) + 1);
-                        break;
-                    case "Rock":
-                        outputTypes.put("Fire", outputTypes.getOrDefault("Fire", 0) + 1);
-                        outputTypes.put("Ice", outputTypes.getOrDefault("Ice", 0) + 1);
-                        outputTypes.put("Flying", outputTypes.getOrDefault("Flying", 0) + 1);
-                        outputTypes.put("Bug", outputTypes.getOrDefault("Bug", 0) + 1);
-                        break;
-                    case "Ghost":
-                        if (selectedTypes.size() == 1) {
-                            outputTypes.put("Normal", outputTypes.getOrDefault("Normal", 0));
-                        }
-                        outputTypes.put("Psychic", outputTypes.getOrDefault("Psychic", 0) + 1);
-                        outputTypes.put("Ghost", outputTypes.getOrDefault("Ghost", 0) + 1);
-                        break;
-                    case "Dragon":
-                        if (selectedTypes.size() == 1) {
-                            outputTypes.put("Fairy", outputTypes.getOrDefault("Fairy", 0));
-                        }
-                        outputTypes.put("Dragon", outputTypes.getOrDefault("Dragon", 0) + 1);
-                        break;
-                    case "Dark":
-                        outputTypes.put("Psychic", outputTypes.getOrDefault("Psychic", 0) + 1);
-                        outputTypes.put("Ghost", outputTypes.getOrDefault("Ghost", 0) + 1);
-                        break;
-                    case "Steel":
-                        outputTypes.put("Ice", outputTypes.getOrDefault("Ice", 0) + 1);
-                        outputTypes.put("Rock", outputTypes.getOrDefault("Rock", 0) + 1);
-                        outputTypes.put("Fairy", outputTypes.getOrDefault("Fairy", 0) + 1);
-                        break;
-                    case "Fairy":
-                        outputTypes.put("Fighting", outputTypes.getOrDefault("Fighting", 0) + 1);
-                        outputTypes.put("Dragon", outputTypes.getOrDefault("Dragon", 0) + 1);
-                        outputTypes.put("Dark", outputTypes.getOrDefault("Dark", 0) + 1);
-                        break;
-                    default:
-                        break;
+            for (int i = 0; i < TYPES.length; i++) {
+                outputTypes.put(TYPES[i], 1);
+            }
+            
+            for (int i = 0; i < selectedTypes.size(); i++) {
+                switch (selectedType) {
+                        case "Normal":
+                            if (selectedTypes.size() == 1) {
+                                outputTypes.put("Ghost", outputTypes.getOrDefault("Ghost", 1) - 1);
+                            }
+                            break;
+                        case "Fire":
+                            outputTypes.put("Grass", outputTypes.getOrDefault("Grass", 1) + 1);
+                            outputTypes.put("Ice", outputTypes.getOrDefault("Ice", 1) + 1);
+                            outputTypes.put("Bug", outputTypes.getOrDefault("Bug", 1) + 1);
+                            outputTypes.put("Steel", outputTypes.getOrDefault("Steel", 1) + 1);
+                            break;
+                        case "Water":
+                            outputTypes.put("Fire", outputTypes.getOrDefault("Fire", 1) + 1);
+                            outputTypes.put("Ground", outputTypes.getOrDefault("Ground", 1) + 1);
+                            outputTypes.put("Rock", outputTypes.getOrDefault("Rock", 1) + 1);
+                            break;
+                        case "Grass":
+                            outputTypes.put("Water", outputTypes.getOrDefault("Water", 1) + 1);
+                            outputTypes.put("Ground", outputTypes.getOrDefault("Ground", 1) + 1);
+                            outputTypes.put("Rock", outputTypes.getOrDefault("Rock", 1) + 1);
+                            break;
+                        case "Electric":
+                            if (selectedTypes.size() == 1) {
+                                outputTypes.put("Ground", outputTypes.getOrDefault("Ground", 1) - 1);
+                            }
+                            outputTypes.put("Water", outputTypes.getOrDefault("Water", 1) + 1);
+                            outputTypes.put("Flying", outputTypes.getOrDefault("Flying", 1) + 1);
+                            break;
+                        case "Ice":
+                            outputTypes.put("Grass", outputTypes.getOrDefault("Grass", 1) + 1);
+                            outputTypes.put("Ground", outputTypes.getOrDefault("Ground", 1) + 1);
+                            outputTypes.put("Flying", outputTypes.getOrDefault("Flying", 1) + 1);
+                            outputTypes.put("Dragon", outputTypes.getOrDefault("Dragon", 1) + 1);
+                            break;
+                        case "Fighting":
+                            if (selectedTypes.size() == 1) {
+                                outputTypes.put("Ghost", outputTypes.getOrDefault("Ghost", 1) - 1);
+                            }
+                            outputTypes.put("Normal", outputTypes.getOrDefault("Normal", 1) + 1);
+                            outputTypes.put("Ice", outputTypes.getOrDefault("Ice", 1) + 1);
+                            outputTypes.put("Rock", outputTypes.getOrDefault("Rock", 1) + 1);
+                            outputTypes.put("Dark", outputTypes.getOrDefault("Dark", 1) + 1);
+                            outputTypes.put("Steel", outputTypes.getOrDefault("Steel", 1) + 1);
+                            break;
+                        case "Poison":
+                            if (selectedTypes.size() == 1) {
+                                outputTypes.put("Steel", outputTypes.getOrDefault("Steel", 1) - 1);
+                            }
+                            outputTypes.put("Grass", outputTypes.getOrDefault("Grass", 1) + 1);
+                            outputTypes.put("Fairy", outputTypes.getOrDefault("Fairy", 1) + 1);
+                            break;
+                        case "Ground":
+                            if (selectedTypes.size() == 1) {
+                                outputTypes.put("Flying", outputTypes.getOrDefault("Flying", 1) - 1);
+                            }
+                            outputTypes.put("Fire", outputTypes.getOrDefault("Fire", 1) + 1);
+                            outputTypes.put("Electric", outputTypes.getOrDefault("Electric", 1) + 1);
+                            outputTypes.put("Poison", outputTypes.getOrDefault("Poison", 1) + 1);
+                            outputTypes.put("Rock", outputTypes.getOrDefault("Rock", 1) + 1);
+                            outputTypes.put("Steel", outputTypes.getOrDefault("Steel", 1) + 1);
+                            break;
+                        case "Flying":
+                            outputTypes.put("Grass", outputTypes.getOrDefault("Grass", 1) + 1);
+                            outputTypes.put("Fighting", outputTypes.getOrDefault("Fighting", 1) + 1);
+                            outputTypes.put("Bug", outputTypes.getOrDefault("Bug", 1) + 1);
+                            break;
+                        case "Psychic":
+                            if (selectedTypes.size() == 1) {
+                                outputTypes.put("Dark", outputTypes.getOrDefault("Dark", 1) - 1);
+                            }
+                            outputTypes.put("Fighting", outputTypes.getOrDefault("Fighting", 1) + 1);
+                            outputTypes.put("Poison", outputTypes.getOrDefault("Poison", 1) + 1);
+                            break;
+                        case "Bug":
+                            outputTypes.put("Grass", outputTypes.getOrDefault("Grass", 1) + 1);
+                            outputTypes.put("Psychic", outputTypes.getOrDefault("Psychic", 1) + 1);
+                            outputTypes.put("Dark", outputTypes.getOrDefault("Dark", 1) + 1);
+                            break;
+                        case "Rock":
+                            outputTypes.put("Fire", outputTypes.getOrDefault("Fire", 1) + 1);
+                            outputTypes.put("Ice", outputTypes.getOrDefault("Ice", 1) + 1);
+                            outputTypes.put("Flying", outputTypes.getOrDefault("Flying", 1) + 1);
+                            outputTypes.put("Bug", outputTypes.getOrDefault("Bug", 1) + 1);
+                            break;
+                        case "Ghost":
+                            if (selectedTypes.size() == 1) {
+                                outputTypes.put("Normal", outputTypes.getOrDefault("Normal", 1));
+                            }
+                            outputTypes.put("Psychic", outputTypes.getOrDefault("Psychic", 1) + 1);
+                            outputTypes.put("Ghost", outputTypes.getOrDefault("Ghost", 1) + 1);
+                            break;
+                        case "Dragon":
+                            if (selectedTypes.size() == 1) {
+                                outputTypes.put("Fairy", outputTypes.getOrDefault("Fairy", 1) -1);
+                            }
+                            outputTypes.put("Dragon", outputTypes.getOrDefault("Dragon", 1) + 1);
+                            break;
+                        case "Dark":
+                            outputTypes.put("Psychic", outputTypes.getOrDefault("Psychic", 1) + 1);
+                            outputTypes.put("Ghost", outputTypes.getOrDefault("Ghost", 1) + 1);
+                            break;
+                        case "Steel":
+                            outputTypes.put("Ice", outputTypes.getOrDefault("Ice", 1) + 1);
+                            outputTypes.put("Rock", outputTypes.getOrDefault("Rock", 1) + 1);
+                            outputTypes.put("Fairy", outputTypes.getOrDefault("Fairy", 1) + 1);
+                            break;
+                        case "Fairy":
+                            outputTypes.put("Fighting", outputTypes.getOrDefault("Fighting", 1) + 1);
+                            outputTypes.put("Dragon", outputTypes.getOrDefault("Dragon", 1) + 1);
+                            outputTypes.put("Dark", outputTypes.getOrDefault("Dark", 1) + 1);
+                            break;
+                        default:
+                            break;
+                }
             }
         }
     }
