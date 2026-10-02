@@ -4,6 +4,7 @@ import javax.swing.border.LineBorder;
 import java.util.HashMap;
 
 public class calc {
+    // Window settings and the Pokemon types shown in both grids.
     private static final int FRAME_WIDTH = 360;
     private static final int FRAME_HEIGHT = 600;
     private static final Color INPUT_PANEL_COLOR = new Color(204, 204, 204);
@@ -15,6 +16,20 @@ public class calc {
     private static final HashMap<String, Boolean> selectedTypes = new HashMap<>();
     private static final HashMap<String, Integer> outputTypes = new HashMap<>();
 
+    // Paints the shared rounded background and outline.
+    private static void paintRoundedBackground(Graphics graphics, JComponent component, boolean selected) {
+        Graphics2D roundedGraphics = (Graphics2D) graphics.create();
+        roundedGraphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        int arc = Math.min(component.getWidth(), component.getHeight()) - 2;
+        roundedGraphics.setColor(component.getBackground());
+        roundedGraphics.fillRoundRect(1, 1, component.getWidth() - 2, component.getHeight() - 2, arc, arc);
+        roundedGraphics.setColor(selected ? Color.WHITE : new Color(0, 0, 0, 70));
+        roundedGraphics.setStroke(new BasicStroke(selected ? 2f : 1f));
+        roundedGraphics.drawRoundRect(1, 1, component.getWidth() - 3, component.getHeight() - 3, arc, arc);
+        roundedGraphics.dispose();
+    }
+
+    // Selectable input button for a Pokemon type.
     private static class RoundedToggleButton extends JToggleButton {
         RoundedToggleButton(String text) {
             super(text);
@@ -27,45 +42,29 @@ public class calc {
 
         @Override
         protected void paintComponent(Graphics graphics) {
-            Graphics2D roundedGraphics = (Graphics2D) graphics.create();
-            roundedGraphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-            int arc = Math.min(getWidth(), getHeight()) - 2;
-            roundedGraphics.setColor(getBackground());
-            roundedGraphics.fillRoundRect(1, 1, getWidth() - 2, getHeight() - 2, arc, arc);
-            roundedGraphics.setColor(getModel().isSelected() ? Color.WHITE : new Color(0, 0, 0, 70));
-            roundedGraphics.setStroke(new BasicStroke(getModel().isSelected() ? 2f : 1f));
-            roundedGraphics.drawRoundRect(1, 1, getWidth() - 3, getHeight() - 3, arc, arc);
-            roundedGraphics.dispose();
+            paintRoundedBackground(graphics, this, getModel().isSelected());
             super.paintComponent(graphics);
         }
     }
 
-    private static class RoundedButton extends JButton {
-        RoundedButton(String text) {
+    // Read-only output label styled like an unselected type button.
+    private static class RoundedLabel extends JLabel {
+        RoundedLabel(String text) {
             super(text);
             setPreferredSize(new Dimension(120, 30));
-            setContentAreaFilled(false);
             setOpaque(false);
-            setBorderPainted(false);
-            setFocusPainted(false);
+            setHorizontalAlignment(SwingConstants.CENTER);
         }
 
         @Override
         protected void paintComponent(Graphics graphics) {
-            Graphics2D roundedGraphics = (Graphics2D) graphics.create();
-            roundedGraphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-            int arc = Math.min(getWidth(), getHeight()) - 2;
-            roundedGraphics.setColor(getBackground());
-            roundedGraphics.fillRoundRect(1, 1, getWidth() - 2, getHeight() - 2, arc, arc);
-            roundedGraphics.setColor(new Color(0, 0, 0, 70));
-            roundedGraphics.setStroke(new BasicStroke(1f));
-            roundedGraphics.drawRoundRect(1, 1, getWidth() - 3, getHeight() - 3, arc, arc);
-            roundedGraphics.dispose();
+            paintRoundedBackground(graphics, this, false);
             super.paintComponent(graphics);
         }
     }
 
-    private static void colorButton(AbstractButton button, int typeIndex) {
+    // Assigns the display color for a type.
+    private static void colorButton(JComponent button, int typeIndex) {
         switch (typeIndex) {
             case 0:
                 button.setBackground(Color.GRAY);
@@ -123,7 +122,7 @@ public class calc {
                 break;
             }
         }
-
+    // Counts which types are covered by the selected types.
     private static void checkTypes(String[] types) {
         outputTypes.clear();
 
@@ -132,9 +131,11 @@ public class calc {
                 continue;
             }
 
-            for (String targetType : TYPES) {
-                switch (targetType) {
+            switch (selectedType) {
                     case "Normal":
+                        if (selectedTypes.size() == 1) {
+                            outputTypes.put("Ghost", outputTypes.getOrDefault("Ghost", 0));
+                        }
                         break;
                     case "Fire":
                         outputTypes.put("Grass", outputTypes.getOrDefault("Grass", 0) + 1);
@@ -153,6 +154,9 @@ public class calc {
                         outputTypes.put("Rock", outputTypes.getOrDefault("Rock", 0) + 1);
                         break;
                     case "Electric":
+                        if (selectedTypes.size() == 1) {
+                            outputTypes.put("Ground", outputTypes.getOrDefault("Ground", 0));
+                        }
                         outputTypes.put("Water", outputTypes.getOrDefault("Water", 0) + 1);
                         outputTypes.put("Flying", outputTypes.getOrDefault("Flying", 0) + 1);
                         break;
@@ -163,6 +167,9 @@ public class calc {
                         outputTypes.put("Dragon", outputTypes.getOrDefault("Dragon", 0) + 1);
                         break;
                     case "Fighting":
+                        if (selectedTypes.size() == 1) {
+                            outputTypes.put("Ghost", outputTypes.getOrDefault("Ghost", 0));
+                        }
                         outputTypes.put("Normal", outputTypes.getOrDefault("Normal", 0) + 1);
                         outputTypes.put("Ice", outputTypes.getOrDefault("Ice", 0) + 1);
                         outputTypes.put("Rock", outputTypes.getOrDefault("Rock", 0) + 1);
@@ -170,10 +177,16 @@ public class calc {
                         outputTypes.put("Steel", outputTypes.getOrDefault("Steel", 0) + 1);
                         break;
                     case "Poison":
+                        if (selectedTypes.size() == 1) {
+                            outputTypes.put("Steel", outputTypes.getOrDefault("Steel", 0));
+                        }
                         outputTypes.put("Grass", outputTypes.getOrDefault("Grass", 0) + 1);
                         outputTypes.put("Fairy", outputTypes.getOrDefault("Fairy", 0) + 1);
                         break;
                     case "Ground":
+                        if (selectedTypes.size() == 1) {
+                            outputTypes.put("Flying", outputTypes.getOrDefault("Flying", 0));
+                        }
                         outputTypes.put("Fire", outputTypes.getOrDefault("Fire", 0) + 1);
                         outputTypes.put("Electric", outputTypes.getOrDefault("Electric", 0) + 1);
                         outputTypes.put("Poison", outputTypes.getOrDefault("Poison", 0) + 1);
@@ -186,6 +199,9 @@ public class calc {
                         outputTypes.put("Bug", outputTypes.getOrDefault("Bug", 0) + 1);
                         break;
                     case "Psychic":
+                        if (selectedTypes.size() == 1) {
+                            outputTypes.put("Dark", outputTypes.getOrDefault("Dark", 0));
+                        }
                         outputTypes.put("Fighting", outputTypes.getOrDefault("Fighting", 0) + 1);
                         outputTypes.put("Poison", outputTypes.getOrDefault("Poison", 0) + 1);
                         break;
@@ -201,10 +217,16 @@ public class calc {
                         outputTypes.put("Bug", outputTypes.getOrDefault("Bug", 0) + 1);
                         break;
                     case "Ghost":
+                        if (selectedTypes.size() == 1) {
+                            outputTypes.put("Normal", outputTypes.getOrDefault("Normal", 0));
+                        }
                         outputTypes.put("Psychic", outputTypes.getOrDefault("Psychic", 0) + 1);
                         outputTypes.put("Ghost", outputTypes.getOrDefault("Ghost", 0) + 1);
                         break;
                     case "Dragon":
+                        if (selectedTypes.size() == 1) {
+                            outputTypes.put("Fairy", outputTypes.getOrDefault("Fairy", 0));
+                        }
                         outputTypes.put("Dragon", outputTypes.getOrDefault("Dragon", 0) + 1);
                         break;
                     case "Dark":
@@ -223,20 +245,30 @@ public class calc {
                         break;
                     default:
                         break;
-                }
             }
         }
     }
 
+    // Refreshes the count shown in each output label.
+    private static void updateOutputLabels(JLabel[] labels) {
+        for (int i = 0; i < TYPES.length; i++) {
+            labels[i].setText(TYPES[i] + " " + outputTypes.getOrDefault(TYPES[i], 0));
+        }
+    }
+
+    // Starts the interface on Swing's event-dispatch thread.
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new calc());
     }
 
+    // Creates and lays out the calculator window.
     public calc() {
         JFrame frame = new JFrame("Coverage Calculator");
         JPanel inputPanel = new JPanel();
         JPanel outputPanel = new JPanel();
+        JLabel[] outputLabels = new JLabel[TYPES.length];
 
+        // Set up the window and its input grid.
         frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
@@ -245,7 +277,10 @@ public class calc {
         inputPanel.setBackground(INPUT_PANEL_COLOR);
         inputPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         frame.add(inputPanel, BorderLayout.NORTH);
+        JPanel outputContainer = new JPanel(new BorderLayout());
+        outputContainer.setBackground(INPUT_PANEL_COLOR);
 
+        // Create a selectable button for each Pokemon type.
         for (int i = 0; i < TYPES.length; i++) {
             String buttonValue = TYPES[i];
             JToggleButton button = new RoundedToggleButton(buttonValue);
@@ -266,29 +301,37 @@ public class calc {
                     selectedTypes.remove(type);
                 }
                 checkTypes(selectedTypes.keySet().toArray(new String[0]));
+                updateOutputLabels(outputLabels);
             });
             inputPanel.add(button);
         }
 
-        frame.setVisible(true);
-
+        // Create output labels and keep their grid at its preferred height.
         outputPanel.setLayout(new GridLayout(3, 6, 8, 8));
         outputPanel.setBackground(INPUT_PANEL_COLOR);
         outputPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        frame.add(outputPanel, BorderLayout.CENTER);
+        outputContainer.add(outputPanel, BorderLayout.NORTH);
+        frame.add(outputContainer, BorderLayout.CENTER);
 
+        // Add one coverage label for each Pokemon type.
         for (int i = 0; i < TYPES.length; i++) {
-            String buttonValue = TYPES[i] + " " +outputTypes.get(TYPES[i]);
-            JButton button = new RoundedButton(buttonValue);
-            colorButton(button, i);
-            Color buttonColor = button.getBackground();
-            int brightness = (buttonColor.getRed() * 299 + buttonColor.getGreen() * 587 + buttonColor.getBlue() * 114) / 1000;
-            button.setForeground(brightness < 145 ? Color.WHITE : new Color(25, 25, 25));
-            button.setFont(new Font("Arial", Font.BOLD, 11));
-            button.setMargin(new Insets(5, 0, 5, 0));
-            button.setBorder(new LineBorder(Color.BLACK, 1));
-            outputPanel.add(button);
+            String labelValue;
+            if (selectedTypes.size() == 0) {
+                labelValue = TYPES[i] + " x 0";
+            } else {
+                labelValue = TYPES[i] + " x " + outputTypes.getOrDefault(TYPES[i], 1);
+            }
+            JLabel label = new RoundedLabel(labelValue);
+            colorButton(label, i);
+            Color labelColor = label.getBackground();
+            int brightness = (labelColor.getRed() * 299 + labelColor.getGreen() * 587 + labelColor.getBlue() * 114) / 1000;
+            label.setForeground(brightness < 145 ? Color.WHITE : new Color(25, 25, 25));
+            label.setFont(new Font("Arial", Font.BOLD, 11));
+            outputLabels[i] = label;
+            outputPanel.add(label);
         }
 
+        // Display the window after all components are ready.
+        frame.setVisible(true);
     }
 }
