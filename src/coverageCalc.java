@@ -2,7 +2,7 @@ import java.awt.*;
 import javax.swing.*;
 import java.util.HashMap;
 
-public class calc {
+public class coverageCalc {
     // Window settings and the Pokemon types shown in both grids.
     private static final int FRAME_WIDTH = 360;
     private static final int FRAME_HEIGHT = 600;
@@ -324,11 +324,11 @@ public class calc {
 
     // Starts the interface on Swing's event-dispatch thread.
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new calc());
+        SwingUtilities.invokeLater(() -> new coverageCalc());
     }
 
     // Creates and lays out the calculator window.
-    public calc() {
+    public coverageCalc() {
         JFrame frame = new JFrame("Coverage Calculator");
         JPanel inputPanel = new JPanel();
         JPanel outputPanel = new JPanel();
@@ -398,5 +398,7 @@ public class calc {
 
         // Display the window after all components are ready.
         frame.setVisible(true);
+
+        
     }
 }
