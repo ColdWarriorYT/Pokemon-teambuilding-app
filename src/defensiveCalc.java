@@ -13,6 +13,7 @@ public class defensiveCalc {
     private static final int BUTTON_HEIGHT = 30;
     private static final int BUTTON_SPACING = 10;
     private static final HashMap<String, Integer> hashMap = new HashMap<>();
+    private static final HashMap<String, Integer>inputTypes = new HashMap<>();
     static {
         for (int i = 0; i < TYPES.length; i++) {
             hashMap.put(TYPES[i], 0);
@@ -20,6 +21,71 @@ public class defensiveCalc {
     }
     private static void updateHashMap(String type, int value) {
         hashMap.put(type, value);
+    }
+    private static void calculateDefensiveCoverage(){
+        String selectedTypes = "";
+        for (int i=0; i<inputTypes.size(); i++){
+            String SelectedType = inputTypes.get(i);
+            int value = hashMap.get(SelectedType);
+            // Perform calculations based on the selected type and its value
+            // You can implement your defensive coverage calculation logic here
+        }
+        switch (SelectedType) {
+            case "Normal":
+                // Calculate defensive coverage for Normal type
+                break;
+            case "Fire":
+                // Calculate defensive coverage for Fire type
+                break;
+            case "Water":
+                // Calculate defensive coverage for Water type
+                break;
+            case "Electric":
+                // Calculate defensive coverage for Electric type
+                break;
+            case "Grass":
+                // Calculate defensive coverage for Grass type
+                break;
+            case "Ice":
+                // Calculate defensive coverage for Ice type
+                break;
+            case "Fighting":
+                // Calculate defensive coverage for Fighting type
+                break;
+            case "Poison":
+                // Calculate defensive coverage for Poison type
+                break;
+            case "Ground":
+                // Calculate defensive coverage for Ground type
+                break;
+            case "Flying":
+                // Calculate defensive coverage for Flying type
+                break;
+            case "Psychic":
+                // Calculate defensive coverage for Psychic type
+                break;
+            case "Bug":
+                // Calculate defensive coverage for Bug type
+                break
+            case "Rock":
+                // Calculate defensive coverage for Rock type
+                break;
+            case "Ghost":
+                // Calculate defensive coverage for Ghost type
+                break;
+            case "Dragon":
+                // Calculate defensive coverage for Dragon type
+                break;
+            case "Dark":
+                // Calculate defensive coverage for Dark type
+                break;
+            case "Steel":
+                // Calculate defensive coverage for Steel type
+                break;
+            case "Fairy":
+                // Calculate defensive coverage for Fairy type
+                break;
+        }
     }
     public defensiveCalc() {
         JFrame frame = new JFrame("Defensive Coverage Calculator");
