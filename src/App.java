@@ -18,12 +18,9 @@ public class App {
         frame.add(panel);
 
         button.addActionListener(e -> {
-            frame.dispose();
             new coverageCalc();
-            frame.getDefaultCloseOperation(); 
         });
         button2.addActionListener(e -> {
-            frame.dispose();
             new defensiveCalc();
         });
 

@@ -336,7 +336,7 @@ public class coverageCalc {
 
         // Set up the window and its input grid.
         frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setLayout(new BorderLayout());
 
         inputPanel.setLayout(new GridLayout(3, 6, 8, 8));
@@ -399,6 +399,6 @@ public class coverageCalc {
         // Display the window after all components are ready.
         frame.setVisible(true);
 
-        
+
     }
 }
