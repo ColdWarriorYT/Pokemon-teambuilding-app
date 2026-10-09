@@ -12,23 +12,20 @@ public class defensiveCalc {
     private static final int BUTTON_WIDTH = 100;
     private static final int BUTTON_HEIGHT = 30;
     private static final int BUTTON_SPACING = 10;
-    private static final HashMap<String, Integer> hashMap = new HashMap<>();
     private static final HashMap<String, Integer>inputTypes = new HashMap<>();
-    static {
-        for (int i = 0; i < TYPES.length; i++) {
-            hashMap.put(TYPES[i], 0);
-        }
+    private static final HashMap<String, Integer>selectedTypes = new HashMap<>();
+    private static final HashMap<String, Boolean>selectedType = new HashMap<>();
+
+    private static void updateHashMap(String type, int value, boolean isSelected) {
+        inputTypes.put(type, value);
+        selectedType.put(type, isSelected);
     }
-    private static void updateHashMap(String type, int value) {
-        hashMap.put(type, value);
-    }
-    private static void calculateDefensiveCoverage(){
-        String selectedTypes = "";
-        for (int i=0; i<inputTypes.size(); i++){
-            String SelectedType = inputTypes.get(i);
-            int value = hashMap.get(SelectedType);
-            // Perform calculations based on the selected type and its value
-            // You can implement your defensive coverage calculation logic here
+    private static void calculateDefensiveCoverage(String[] types) {
+
+        for (String selectedType : types) {
+            if (!Boolean.TRUE.equals(selectedTypes.get(selectedType))) {
+                continue;
+            }
         }
         switch (SelectedType) {
             case "Normal":
@@ -66,7 +63,7 @@ public class defensiveCalc {
                 break;
             case "Bug":
                 // Calculate defensive coverage for Bug type
-                break
+                break;
             case "Rock":
                 // Calculate defensive coverage for Rock type
                 break;
@@ -101,7 +98,11 @@ public class defensiveCalc {
                 if (input != null && !input.isEmpty()) {
                     try {
                         int value = Integer.parseInt(input);
-                        updateHashMap(type, value);
+                        if (value <0) {
+                            updateHashMap(type, value, true);
+                        } else {
+                            updateHashMap(type, value, false);
+                        }
                     } catch (NumberFormatException ex) {
                         JOptionPane.showMessageDialog(frame, "Invalid input. Please enter a valid integer.");
                     }
@@ -113,7 +114,7 @@ public class defensiveCalc {
         JButton submitButton = new JButton("Submit");
         submitButton.addActionListener(e -> {
             // Handle the submission of the hashMap values here
-            System.out.println("Submitted values: " + hashMap);
+            System.out.println("Submitted values: " + selectedType);
             // You can add further processing logic here
         });
         frame.add(submitButton);
