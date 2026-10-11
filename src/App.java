@@ -6,8 +6,9 @@ import javax.swing.JButton;
 public class App {
     JFrame frame = new JFrame("Homepage");
     JPanel panel = new JPanel();
-    JButton button = new JButton("Open Coverage Calculator");
-    JButton button2 = new JButton("Open defensive Coverage Calculator");
+    JButton button = new JButton("Open Team Sheet");
+    JButton button2 = new JButton("Open offensive Coverage Calculator");
+    JButton button3 = new JButton("Open defensive Coverage Calculator");
 
     public App() {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -15,12 +16,16 @@ public class App {
 
         panel.add(button);
         panel.add(button2);
+        panel.add(button3);
         frame.add(panel);
 
         button.addActionListener(e -> {
-            new coverageCalc();
+            new teamSheet();
         });
         button2.addActionListener(e -> {
+            new coverageCalc();
+        });
+        button3.addActionListener(e -> {
             new defensiveCalc();
         });
 

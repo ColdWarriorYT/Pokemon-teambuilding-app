@@ -15,9 +15,12 @@ public class typeLogic {
             outputTypes.put(TYPES[i], 0);
         }
         if (function.equals("DEFENSE")) {
-            
+            //a
         } else if (function.equals("ATTACK")) {
             //aa
+            for (int i=0; i<TYPES.length; i++) {
+                
+            }
         }
         return outputTypes;
     }
