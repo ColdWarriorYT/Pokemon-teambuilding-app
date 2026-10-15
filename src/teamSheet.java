@@ -38,16 +38,39 @@ public class teamSheet {
                 return;
             }
 
-            importedPokemon.clear();
+            Map<String, Map<String, String>> teamData = new LinkedHashMap<>();
             for (String pokemonText : clipboardText.trim().split("\\R\\s*\\R")) {
                 if (!pokemonText.isEmpty()) {
                     Map<String, String> pokemon = parsePokemon(pokemonText);
-                    importedPokemon.put(pokemon.get("name"), pokemon);
+                    teamData.put(pokemon.get("name"), pokemon);
                 }
             }
 
-            displayTeam();
-            System.out.println("Imported successfully");
+            new SwingWorker<Map<String, Map<String, String>>, Void>() {
+                @Override
+                protected Map<String, Map<String, String>> doInBackground() throws Exception {
+                    Map<String, Map<String, String>> moveData = new LinkedHashMap<>();
+                    for (Map<String, String> pokemon : teamData.values()) {
+                        PokeApi.addPokemonData(pokemon, moveData);
+                    }
+                    return teamData;
+                }
+
+                @Override
+                protected void done() {
+                    try {
+                        importedPokemon.clear();
+                        importedPokemon.putAll(get());
+                        displayTeam();
+                        System.out.println("Imported successfully");
+                    } catch (Exception ex) {
+                        Throwable cause = ex.getCause() == null ? ex : ex.getCause();
+                        JOptionPane.showMessageDialog(team,
+                            "Could not load Pokémon data: " + cause.getMessage(),
+                            "PokéAPI error", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            }.execute();
         } catch (Exception ex) {
             System.out.println("Could not import team: " + ex.getMessage());
         }
@@ -74,7 +97,9 @@ public class teamSheet {
         String[] lines = pokemonText.trim().split("\\R");
 
         String[] header = lines[0].split("@", 2);
-        pokemon.put("name", header[0].trim());
+        String name = header[0].trim();
+        pokemon.put("name", name);
+        pokemon.put("species", getSpeciesName(name));
         if (header.length > 1) {
             pokemon.put("item", header[1].trim());
         }
@@ -97,6 +122,20 @@ public class teamSheet {
 
         pokemon.put("raw", pokemonText.trim());
         return pokemon;
+    }
+
+    private String getSpeciesName(String name) {
+        int openParenthesis = name.lastIndexOf('(');
+        if (openParenthesis >= 0 && name.endsWith(")")) {
+            String possibleSpecies = name.substring(openParenthesis + 1, name.length() - 1).trim();
+            if (possibleSpecies.equalsIgnoreCase("M")
+                || possibleSpecies.equalsIgnoreCase("F")
+                || possibleSpecies.equalsIgnoreCase("NB")) {
+                return name.substring(0, openParenthesis).trim();
+            }
+            return possibleSpecies;
+        }
+        return name;
     }
 
     private String toFieldKey(String label) {
