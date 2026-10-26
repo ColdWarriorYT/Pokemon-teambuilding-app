@@ -1,0 +1,94 @@
+Copyright © 2026 ColdWarrior. All rights reserved.
+
+## 1. Permission to Use
+
+Permission is hereby granted to anyone to download, access, run, and use this software for personal, educational, experimental, or other lawful purposes, free of charge.
+
+No additional permission is required to use the software itself.
+
+## 2. Modification
+
+You are permitted to view, modify, adapt, and create derivative works from this software.
+
+Modified versions may be created and used privately without additional permission.
+
+However, modified versions may **not** be distributed, published, uploaded, shared, or otherwise made available to the public without prior permission from ColdWarrior.
+
+## 3. Redistribution
+
+Redistribution of the original software, in whole or in part, is **not permitted without prior permission** from ColdWarrior.
+
+This includes, but is not limited to:
+
+- Re-uploading the software to another website or repository.
+- Publishing copies or mirrors of the software.
+- Including the software in another publicly distributed project.
+- Redistributing modified or unmodified versions.
+- Sharing substantial portions of the source code publicly.
+
+Permission may be requested through GitHub or Discord.
+
+## 4. Use in Other Projects
+
+You may use portions of the source code in your own projects, provided that:
+
+1. You give clear and appropriate credit to **ColdWarrior**.
+2. You do not redistribute the original project itself.
+3. Your use of the code does not imply that ColdWarrior endorses or is affiliated with your project.
+
+Redistribution of substantial portions of the source code still requires prior permission.
+
+## 5. Forks
+
+You may create a private fork or modified copy of this project for your own use.
+
+Public forks are considered a form of redistribution and therefore require prior permission from ColdWarrior.
+
+## 6. Commercial Use
+
+The software may not be sold, sublicensed, or used as a paid product without prior permission from ColdWarrior.
+
+However, you may create content featuring or demonstrating the software, including videos, livestreams, tutorials, reviews, or similar content, and may monetize that content.
+
+## 7. Attribution
+
+Whenever this software or portions of its source code are publicly used, displayed, demonstrated, or incorporated into another project, appropriate credit must be given to **ColdWarrior**, unless otherwise agreed upon with ColdWarrior.
+
+Credit should be reasonably visible and should identify ColdWarrior as the original creator.
+
+Different attribution arrangements may be agreed upon with ColdWarrior on a case-by-case basis.
+
+## 8. License Violations
+
+This license does not attempt to impose unrealistic restrictions on private use or open-source development.
+
+If a person violates the terms of this license, ColdWarrior may request that the unauthorized distribution, publication, or use be removed or discontinued.
+
+Any permission granted under this license may be considered revoked for a person who knowingly and repeatedly violates its terms.
+
+## 9. No Warranty
+
+THE SOFTWARE IS PROVIDED **"AS IS"**, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED.
+
+COLDWARRIOR SHALL NOT BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY ARISING FROM OR RELATED TO THE SOFTWARE OR ITS USE.
+
+## 10. Ownership
+
+This license does not transfer ownership or copyright of the software.
+
+All rights not explicitly granted by this license remain with **ColdWarrior**.
+
+## 11. Permission Requests
+
+Requests for permission to redistribute, publish modified versions, use the software commercially, or otherwise use the software outside the terms of this license may be made through:
+
+- **GitHub:** Direct Message to ColdWarrior
+- **Discord:** Direct Message to ColdWarrior
+
+Permission must be explicitly granted by ColdWarrior before the requested activity takes place.
+
+---
+
+**Copyright © 2026 ColdWarrior. All rights reserved.**
+
+This license applies to the software and its associated source code unless another license or written permission explicitly states otherwise.

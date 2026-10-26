@@ -1,18 +1,13 @@
-## Getting Started
+## Disclaimer
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+This program is in VERY early acces (probably not even publicly released yet)
 
-## Folder Structure
+## How to use
 
-The workspace contains two folders by default, where:
+In my opinion i dont need to put this here because its pretty self explanatory just follow the buttons
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+there is also an option to use the imported teamsheet and calculate based on the pokemon that you imported
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+## License
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+read License.txt
