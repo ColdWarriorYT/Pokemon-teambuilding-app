@@ -10,4 +10,6 @@ there is also an option to use the imported teamsheet and calculate based on the
 
 ## License
 
-read License.txt
+All rights reserved
+
+read License.txt for more information
